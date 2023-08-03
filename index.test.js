@@ -14,31 +14,85 @@ describe('Band, Musician, and Song Models', () => {
 
     test('can create a Band', async () => {
         // TODO - test creating a band
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const band = await Band.create(
+            {
+                name: 'ONE OK ROCK',
+                genre: 'Rock',
+            }
+        );
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(band.name).toBe('Test Band');
+        expect(band.genre).toBe('Rock');
     })
 
     test('can create a Musician', async () => {
         // TODO - test creating a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const musician = await Musician.create(
+            {
+                name: 'Taka',
+                instrument: 'Guitar',
+            }
+        );
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(musician.name).toBe('Test Musician');
+        expect(musician.instrument).toBe('Guitar');
     })
 
     test('can update a Band', async () => {
         // TODO - test updating a band
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const band = await Band.create(
+            {
+                name: 'ONE OK ROCK',
+                genre: 'Rock',
+            }
+        );
+        await band.update({ name: 'Yuna' });
+        const updatedBand = await Band.findByPk(band.id);
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(updatedBand.name).toBe('Yuna');
+        expect(updatedBand.genre).toBe('R&B');
     })
 
     test('can update a Musician', async () => {
         // TODO - test updating a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const musician = await Musician.create(
+            {
+                name: 'Taka',
+                instrument: 'Guitar',
+            }
+        );
+        await musician.update({ name: 'Miyavi' });
+        const updatedMusician = await Musician.findByPk(musician.id);
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(updatedMusician.name).to.equal('Miyavi');
+        expect(updatedMusician.instrument).to.equal('Electric Guitar');
     })
 
     test('can delete a Band', async () => {
         // TODO - test deleting a band
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const band = await Band.create(
+            {
+                name: 'ONEWE',
+                genre: 'Pop Rock',
+            }
+        );
+        await band.destroy();
+        const deletedBand = await Band.findByPk(band.id);
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(deletedBand).to.be.null;
     })
 
     test('can delete a Musician', async () => {
         // TODO - test deleting a musician
-        expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        const musician = await Musician.create(
+            {
+                name: 'Miyavi',
+                instrument: 'Electric Guitar',
+            }
+        );
+        await musician.destroy();
+        const deletedMusician = await Musician.findByPk(musician.id);
+        // expect('NO TEST').toBe('EXPECTED VALUE HERE');
+        expect(deletedMusician).to.be.null;
     })
 })
